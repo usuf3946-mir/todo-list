@@ -1,44 +1,52 @@
-*
-{
-  font-family: sans-serif;
+.tss {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 24px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border: 1px solid #e8eaf0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-table{
-  border-collapse: collapse;
-  width: 1000px;
-  margin: auto;
-  height: 200px;
-  margin-top: 50px;
-  border: 1px solid black;
-  
-  
+.tss thead td {
+    background: #f5f7fb;
+    color: #5b6478;
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: 1px solid #e8eaf0;
 }
 
-thead{
-  border: 1px solid black;
-  background-color: rgb(190, 187, 187);
-}
-td{
-  border: 1px solid black;
-  
-}
-.btnEdit{
-  background-color: blue;
-  width: 50px;
-  border-radius: 7px;
-  border: none;
-  color: white;
-  padding: 5px;
+.tss td {
+    padding: 12px 16px;
+    text-align: left;
+    color: #2b3245;
+    font-size: 15px;
 }
 
-.btnDelete{
-  background-color: red;
-  margin-left: 20px;
-  width: 50px;
-  border-radius: 7px;
-  border: none;
-  color: white;
-  padding: 5px;
-  margin-top: 5px;
-    
+.tss tr {
+    transition: background 0.15s;
+}
+
+.tss tr:not(:last-child) td {
+    border-bottom: 1px solid #f0f2f7;
+}
+
+.tss tr:nth-child(even) {
+    background: #fafbfd;
+}
+
+.tss tr:hover {
+    background: #eef3ff;
+}
+
+.btnEdit {
+    margin: 0 6px 0 12px;
+}
+
+.btnDelete {
+    margin-right: 12px;
 }

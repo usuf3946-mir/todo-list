@@ -1,12 +1,13 @@
 import './App.css'
 import { useState } from "react"
+import { Input, Button } from "antd"
 
 export const App = () => {
     const [data, setData] = useState([
-        { id: 1, name: "Mirzoev", age: 20,city:"Dushanbe",job:"Student"},
-        { id: 2, name: "Yusuf", age: 15, city:"Greenwood",job:"Student"},
-        {id: 3, name: "Salmon", age: 20,city:"NY CITY",job:"Student"},
-        {id: 4, name: "Abubakr", age: 20,city:"Moscow",job:"Student"}
+        { id: 1, name: "Mirzoev", age: 20,job:"Student"},
+        { id: 2, name: "Yusuf", age: 15,job:"Student"},
+        {id: 3, name: "Salmon", age: 20,job:"Student"},
+        {id: 4, name: "Abubakr", age: 20,job:"Student"}
     ])
 
     const [name, setName] = useState("")
@@ -24,7 +25,6 @@ export const App = () => {
             setData([...data, {
                 id: Date.now(),
                 name: name,
-                city: city,
                 age: Number(age)
             }])
         }
@@ -37,7 +37,7 @@ export const App = () => {
         setData(data.filter(el => el.id !== id))
     }
 
-    function editUser(el) {
+    function editUser(el){
         setName(el.name)
         setAge(String(el.age))
         setEditId(el.id)
@@ -47,10 +47,9 @@ export const App = () => {
         <div>
             <h1>YUSUF</h1>
 
-            <input placeholder="Name" value={name} onChange={e => setName(e.target.value)}/>
-            <input placeholder="Age" value={age} onChange={e => setAge(e.target.value)} />
-            <button onClick={addUser}>{editId !== 0 ? "Save" : "Add"}
-            </button>
+            <Input placeholder="Name" value={name} onChange={e => setName(e.target.value)} style={{ width: 200 }}/>
+            <Input placeholder="Age" value={age} onChange={e => setAge(e.target.value)} style={{ width: 200 }} />
+            <Button type="primary" onClick={addUser}>{editId !== 0 ? "Save" : "Add"}</Button>
 
 <table className='tss'>
     <thead>
@@ -71,8 +70,8 @@ export const App = () => {
                     <td>{el.age}</td>
                     <td>{el.city}</td>
                     <td>{el.job}</td>
-                    <button className='btnEdit' onClick={() => editUser(el)}>Edit</button>
-                    <button className='btnDelete' onClick={() => deleteUser(el.id)}> Delete </button>
+                    <Button className='btnEdit' onClick={() => editUser(el)}>Edit</Button>
+                    <Button danger className='btnDelete' onClick={() => deleteUser(el.id)}> Delete </Button>
                 </tr>
                 
             ))}</table> 
