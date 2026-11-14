@@ -1,6 +1,6 @@
 import './App.css'
 import { useState } from "react"
-import { Input, Button } from "antd"
+import {TextField,Button,Stack,Typography,Paper,Table,TableBody,TableCell,TableContainer,TableHead,TableRow} from "@mui/material"
 
 export const App = () => {
     const [data, setData] = useState([
@@ -16,16 +16,14 @@ export const App = () => {
 
     function addUser() {
         if (editId !== 0) {
-            setData(data.map(el =>
-                el.id === editId? { ...el, name: name, age: Number(age) }: el
+           setData(data.map(el=>
+            el.id===editId?{...el,name:name,age:Number(age)}:el
             ))
 
             setEditId(0)
         } else {
             setData([...data, {
-                id: Date.now(),
-                name: name,
-                age: Number(age)
+                id: Date.now(),name: name,age: Number(age)
             }])
         }
 
@@ -44,37 +42,41 @@ export const App = () => {
     }
 
     return (
-        <div>
-            <h1>YUSUF</h1>
+        <div style={{ maxWidth: 800, margin: "40px auto", padding: "0 16px" }}>
+            <Typography variant="h4" gutterBottom>YUSUF</Typography>
 
-            <Input placeholder="Name" value={name} onChange={e => setName(e.target.value)} style={{ width: 200 }}/>
-            <Input placeholder="Age" value={age} onChange={e => setAge(e.target.value)} style={{ width: 200 }} />
-            <Button type="primary" onClick={addUser}>{editId !== 0 ? "Save" : "Add"}</Button>
+            <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+                <TextField size="small" label="Name" value={name} onChange={e => setName(e.target.value)} />
+                <TextField size="small" label="Age" value={age} onChange={e => setAge(e.target.value)} />
+                <Button variant="contained" onClick={addUser}>{editId !== 0 ? "Save" : "Add"}</Button>
+            </Stack>
 
-<table className='tss'>
-    <thead>
-        <td>Name</td>
-        <td>Age</td>
-        <td>City</td>
-        <td>Job</td>
-        <td>Actions</td>
-        
-    </thead>
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Age</TableCell>
+                            <TableCell>Job</TableCell>
+                            <TableCell>Actions</TableCell>
+                        </TableRow>
+                    </TableHead>
 
-
-
-
-            {data.map(el => (
-                <tr key={el.id}>
-                    <td>{el.name}</td>
-                    <td>{el.age}</td>
-                    <td>{el.city}</td>
-                    <td>{el.job}</td>
-                    <Button className='btnEdit' onClick={() => editUser(el)}>Edit</Button>
-                    <Button danger className='btnDelete' onClick={() => deleteUser(el.id)}> Delete </Button>
-                </tr>
-                
-            ))}</table> 
+                    <TableBody>
+                        {data.map(el => (
+                            <TableRow key={el.id} hover>
+                                <TableCell>{el.name}</TableCell>
+                                <TableCell>{el.age}</TableCell>
+                                <TableCell>{el.job}</TableCell>
+                                <TableCell>
+                                    <Button onClick={() => editUser(el)}>Edit</Button>
+                                    <Button color="error" onClick={() => deleteUser(el.id)}>Delete</Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
   )    
 } 

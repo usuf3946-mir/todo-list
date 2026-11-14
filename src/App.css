@@ -27,21 +27,7 @@
     font-size: 15px;
 }
 
-.tss tr {
-    transition: background 0.15s;
-}
 
-.tss tr:not(:last-child) td {
-    border-bottom: 1px solid #f0f2f7;
-}
-
-.tss tr:nth-child(even) {
-    background: #fafbfd;
-}
-
-.tss tr:hover {
-    background: #eef3ff;
-}
 
 .btnEdit {
     margin: 0 6px 0 12px;
